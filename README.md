@@ -16,7 +16,7 @@ As demonstrated by Equation 9, β=0 will produce the same result as the original
 
 
 
-![输入图片描述](https://github.com/Research000/RSS-183/blob/main/cut_1.JPG)<br/>
+![输入图片描述](https://github.com/Research000/RSS-183/blob/main/cut_2.JPG)<br/>
 
 Figure 1. Examples of images after Fourier transform-based domain augmentation with different β values. When β value is greater than or equal to 0.03 the image artefacts became obvious.<br/>
 
@@ -124,6 +124,6 @@ As observed, the proposed local feature only with Fourier transform-based domain
 In the visual localization task with the Aachen Day-Night datasets, we illustrate local feature matching for image pairs in Fig. 2. It can be seen that our proposed local feature gets more matching keypoints pairs than that of the baseline under environment changing conditions. It is extremely advantageous for the long-term localization of robots in the actual world.
 
 
-![输入图片描述](https://github.com/Research000/RSS-183/blob/main/cut_2.JPG)<br/>
+![输入图片描述](https://github.com/Research000/RSS-183/blob/main/cut_1.JPG)<br/>
 
 Figure 2. Examples for local feature matching for image pairs taken from Aachen Day-Night datasets. The left column displays the baseline's matching results, while the right column displays that of ours <br/>
