@@ -63,3 +63,49 @@ As seen, the proposed local feature only with Fourier transform-based domain aug
 As shown in Equation 9, $\beta$ = 0 will render the result the same as the original source image. In contrast, when $\beta$ = 1.0, the amplitude of the result will be replaced by the target image. To determine an appropriate beta value, we conducted some experiments. First, we performed image testing with varying beta values and noticed that when beta was more than or equal to 0.03, the artifacts in transformed images became obvious. Subsequently, we sampled numerous beta values (0.01, 0.015, 0.02, 0.025) less than 0.03 to train the network (baseline with Fourier transform-based domain augmentation), and the performance of models trained with beta values 0.01, 0.015, 0.02 are comparable, model trained with beta value 0.025 was a litter worse. Thus, in the experiments that follows we chose one of the three beta values (0.01, 0.015, 0.02) at random for each training iteration. 
 
 ![输入图片描述](README1_md_files/3b43f800-d555-11ed-ad9c-736d76abbe05.jpeg?v=1&type=image)
+
+<table>
+	<tr>
+	    <th >$\beta$ value</th>
+	    <th >Precision</th>
+	    <th >Recall</th>  
+	    <th >MMA</th> 
+	    <th >Homo.</th> 
+	</tr >
+  <tr>
+      <td><p align="center">baseline</p></td>
+      <td><p align="center">72.27</p></td>
+      <td><p align="center">63.63</p></td>
+      <td><p align="center">70.83</p></td>
+      <td><p align="center">73.51</p></td>
+	</tr >
+ <tr>
+      <td><p align="center">0.01</p></td>
+      <td><p align="center">73.20</p></td>
+      <td><p align="center">**71.87**</p></td>
+      <td><p align="center">71.22</p></td>
+      <td><p align="center">74.22</p></td>
+	</tr >
+   <tr>
+      <td><p align="center">0.015</p></td>
+      <td><p align="center">73.16</p></td>
+      <td><p align="center">71.73</p></td>
+      <td><p align="center">71.19</p></td>
+      <td><p align="center">74.34</p></td>
+	</tr >
+<tr>
+      <td><p align="center">0.02</p></td>
+      <td><p align="center">73.26</p></td>
+      <td><p align="center">71.70</p></td>
+      <td><p align="center">71.24</p></td>
+      <td><p align="center">74.28</p></td>
+	</tr >
+<tr>
+      <td><p align="center">0.025</p></td>
+      <td><p align="center">73.08</p></td>
+      <td><p align="center">71.66</p></td>
+      <td><p align="center">71.15</p></td>
+      <td><p align="center"> </p></td>
+	</tr >
+
+</table>
