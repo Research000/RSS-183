@@ -126,4 +126,4 @@ In the visual localization task with the Aachen Day-Night datasets, we illustrat
 
 ![输入图片描述](https://github.com/Research000/RSS-183/blob/main/fig.2.JPG)<br/>
 
-Figure 2. Examples for local feature matching for image pairs taken from Aachen Day-Night datasets. The left column displays the baseline's matching results, while the right column displays that of ours <br/>
+Figure 2. Examples for local feature matching for image pairs taken from Aachen Day-Night datasets. The left column displays the baseline's matching results, while the right column displays that of ours. <br/>
