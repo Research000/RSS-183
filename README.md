@@ -1,18 +1,71 @@
 # Supplementary materials for RSS-183
 ## Supplementary materials：
 >
-We have added the following experiments and results displays based on the reviewers' comments:<br />
+We have added the following experiments and results based on the reviewers' comments:<br/>
 >
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Comparison with DISP (GAN-based local feature learning method). This experiment will add to the part D of section Ⅳ. Experiments.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Search for appropriate β values to eliminate background texture in Fourier transform-based domain augmentation. This experiment will be added to part E of Section Ⅳ. Experiments.<br/>
 >
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Real image comparisons between the baseline and our proposed local feature on Aachen Day-Night datasets. The display will be insert in visual localization task (Ⅳ.Experiments. D).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Comparison to the DISP (GAN-based local feature learning method). This experiment will be added to part D of section Ⅳ. Experiments.<br/>
 >
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Experiment for searching appropriate beta value to avoid background texture in Fourier transform-based domain augmentation. This experiment will add to the part E of Experiments section. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Comparisons of keypoints matching results with baseline method using Aachen Day-Night actual image datasets. 
 
-**1.Comparison with DISP**
+***A. Experiment on selecting β values***
 >
-Due to the fact that the GAN-based local feature learning method DISP mentioned in our paper is not open-source, we conducted experiments using the same experimental pipeline as DISP and compared the results on the Aachen Day Night dataset to those of DISP. We employ the same computation-efficient hierarchical localization concept as proposed in [62]. First, we find candidate images by matching the query against images in the database using NetVLAD (Abbreviated as NV) [63] as a global image descriptor. The 6-DoF camera pose is then calculated by matching local features between the query image and the retrieved candidates. We will compare it to two versions of our proposed features, one if which only conducts Fourier transform-based data augmentation during representational learning, the other uses domain augmentation and feature distribution alignment strategies. The comparison results are shown in Table.1. 
+As demonstrated by Equation 9, β=0 will produce the same result as the original source image. In contrast, when β equals 1, the result's amplitude is replaced by that of the target image. Experiments were conducted in order to determine a suitable β value. First, we tested images with varying β values and observed that when β was greater than or equal to 0.03, image artefacts became obvious, as shown in Fig. 1. Subsequently, we sampled numerous β values (0.01, 0.015, 0.02, and 0.025) less than 0.03 to train the network (baseline with Fourier transform-based domain augmentation). We use the open-source code of ASLFeat (CVPR) as the baseline. The performance of models trained with β values 0.01, 0.015, and 0.02 are comparable, the performance of the model trained with β value 0.025 was lower. The test results on Image Matching task with HPatches are shown in Table Ⅰ. For each iteration in the training process, one of the three β values (0.01, 0.015, or 0.02) was chosen at random. This β selection strategy is employed for all subsequent experiments.
 
+TABLE I. Evaluation results of local featurs learned with various β value on HPatches
+<table>
+	<tr>
+	    <th >$\beta$ value</th>
+	    <th >Precision</th>
+	    <th >Recall</th>  
+	    <th >MMA</th> 
+	    <th >Homo.</th> 
+	</tr >
+  <tr>
+      <td><p align="center">baseline</p></td>
+      <td><p align="center">72.27</p></td>
+      <td><p align="center">63.63</p></td>
+      <td><p align="center">70.83</p></td>
+      <td><p align="center">73.51</p></td>
+	</tr >
+ <tr>
+      <td><p align="center">0.01</p></td>
+      <td><p align="center">73.20</p></td>
+      <td><p align="center">71.87</p></td>
+      <td><p align="center">71.22</p></td>
+      <td><p align="center">74.22</p></td>
+	</tr >
+   <tr>
+      <td><p align="center">0.015</p></td>
+      <td><p align="center">73.16</p></td>
+      <td><p align="center">71.73</p></td>
+      <td><p align="center">71.19</p></td>
+      <td><p align="center">74.34</p></td>
+	</tr >
+<tr>
+      <td><p align="center">0.02</p></td>
+      <td><p align="center">73.26</p></td>
+      <td><p align="center">71.70</p></td>
+      <td><p align="center">71.24</p></td>
+      <td><p align="center">74.28</p></td>
+	</tr >
+<tr>
+      <td><p align="center">0.025</p></td>
+      <td><p align="center">73.08</p></td>
+      <td><p align="center">71.66</p></td>
+      <td><p align="center">71.15</p></td>
+      <td><p align="center">73.94</p></td>
+	</tr >
+
+</table><br/>
+
+
+***B. Comparison with GAN based learning method***
+>
+Since the GAN-based local feature learning method DISP [30] mentioned in our paper is not open-source, we conducted experiments using the same experimental pipeline as DISP and compared the results on the Aachen Day Night dataset to those of DISP [30]. We employ the same efficient hierarchical localization concept proposed in [62]. Using NetVLAD (Abbreviated NV) [63] as a global image descriptor, we first locate candidate images by matching the query against images in the database. The 6-DoF camera pose is then calculated by matching the query image's local features to those of the retrieved candidates. We compare it to two versions of our proposed features, one of which employs only Fourier transform-based data augmentation during representational learning and the other of which employs domain augmentation and feature distribution alignment strategies. The results of the comparison are shown in Table Ⅱ.<br/>
+
+TABLE II. Results on visual localization for different distance and orientation thresholds
 <table>
 	<tr>
 	    <th rowspan="2">Method</th>
@@ -56,56 +109,13 @@ Due to the fact that the GAN-based local feature learning method DISP mentioned 
 	</tr >
 </table>
 
-As seen, the proposed local feature only with Fourier transform-based domain augmentation for representational learning is comparable to that of DISP, indicating that Fourier transform-based domain augmentation method can also increase domain diversity without requiring additional time-consuming training of GAN networks. The result is considerably enhanced by the addition of a domain feature alignment strategy, further demonstrating the validity of the proposed strategy.
+As observed, the proposed local feature only with Fourier transform-based domain augmentation for representational learning is comparable to that of DISP, indicating that Fourier transform-based domain augmentation can also increase domain diversity without requiring additional time-consuming GAN network training. The addition of a domain feature alignment strategy results in further improvement, proving the validity of the proposed strategy.<br/>  
 
-**2.Real image comparisons**
->
-As shown in Equation 9, $\beta$ = 0 will render the result the same as the original source image. In contrast, when $\beta$ = 1.0, the amplitude of the result will be replaced by the target image. To determine an appropriate beta value, we conducted some experiments. First, we performed image testing with varying beta values and noticed that when beta was more than or equal to 0.03, the artifacts in transformed images became obvious. Subsequently, we sampled numerous beta values (0.01, 0.015, 0.02, 0.025) less than 0.03 to train the network (baseline with Fourier transform-based domain augmentation), and the performance of models trained with beta values 0.01, 0.015, 0.02 are comparable, model trained with beta value 0.025 was a litter worse. Thus, in the experiments that follows we chose one of the three beta values (0.01, 0.015, 0.02) at random for each training iteration. 
+ 
+***C. Comparison of Keypoints Matching on real images***<br/>
 
-![输入图片描述](README1_md_files/3b43f800-d555-11ed-ad9c-736d76abbe05.jpeg?v=1&type=image)
+In the visual localization task with the Aachen Day-Night datasets, we illustrate local feature matching for image pairs in Fig. 2. It can be seen that our proposed local feature gets more matching keypoints pairs than that of the baseline under environment changing conditions. It is extremely advantageous for the long-term localization of robots in the actual world.
 
-<table>
-	<tr>
-	    <th >$\beta$ value</th>
-	    <th >Precision</th>
-	    <th >Recall</th>  
-	    <th >MMA</th> 
-	    <th >Homo.</th> 
-	</tr >
-  <tr>
-      <td><p align="center">baseline</p></td>
-      <td><p align="center">72.27</p></td>
-      <td><p align="center">63.63</p></td>
-      <td><p align="center">70.83</p></td>
-      <td><p align="center">73.51</p></td>
-	</tr >
- <tr>
-      <td><p align="center">0.01</p></td>
-      <td><p align="center">73.20</p></td>
-      <td><p align="center">**71.87**</p></td>
-      <td><p align="center">71.22</p></td>
-      <td><p align="center">74.22</p></td>
-	</tr >
-   <tr>
-      <td><p align="center">0.015</p></td>
-      <td><p align="center">73.16</p></td>
-      <td><p align="center">71.73</p></td>
-      <td><p align="center">71.19</p></td>
-      <td><p align="center">74.34</p></td>
-	</tr >
-<tr>
-      <td><p align="center">0.02</p></td>
-      <td><p align="center">73.26</p></td>
-      <td><p align="center">71.70</p></td>
-      <td><p align="center">71.24</p></td>
-      <td><p align="center">74.28</p></td>
-	</tr >
-<tr>
-      <td><p align="center">0.025</p></td>
-      <td><p align="center">73.08</p></td>
-      <td><p align="center">71.66</p></td>
-      <td><p align="center">71.15</p></td>
-      <td><p align="center"> </p></td>
-	</tr >
+![输入图片描述](https://www.bing.com/images/search?view=detailV2&ccid=Fl4KDN0T&id=E80628AA9E1D6712841403FB8A3521D0D82438D6&thid=OIP.Fl4KDN0T6ruayOi0Jq4clQHaET&mediaurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.165e0a0cdd13eabb9ac8e8b426ae1c95%3frik%3d1jgk2NAhNYr7Aw%26riu%3dhttp%253a%252f%252fn.sinaimg.cn%252fsports%252ftransform%252f228%252fw650h378%252f20191007%252f0e2b-ifrwayw1669362.jpg%26ehk%3dPRF9Klhma%252fortb9K5wzUIJDABM1IxG40bBLafn3axVY%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&exph=378&expw=650&q=%e6%9b%bc%e8%81%94&simid=607994067654368619&FORM=IRPRST&ck=21762453ED880C9762C2B9FE42A899B6&selectedIndex=24&ajaxhist=0&ajaxserp=0)
 
-</table>
+
