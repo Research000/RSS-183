@@ -14,9 +14,11 @@ We have added the following experiments and results based on the reviewers' comm
 As demonstrated by Equation 9, β=0 will produce the same result as the original source image. In contrast, when β equals 1, the result's amplitude is replaced by that of the target image. Experiments were conducted in order to determine a suitable β value. First, we tested images with varying β values and observed that when β was greater than or equal to 0.03, image artefacts became obvious, as shown in Fig. 1. Subsequently, we sampled numerous β values (0.01, 0.015, 0.02, and 0.025) less than 0.03 to train the network (baseline with Fourier transform-based domain augmentation). We use the open-source code of ASLFeat (CVPR) as the baseline. The performance of models trained with β values 0.01, 0.015, and 0.02 are comparable, the performance of the model trained with β value 0.025 was lower. The test results on Image Matching task with HPatches are shown in Table Ⅰ. For each iteration in the training process, one of the three β values (0.01, 0.015, or 0.02) was chosen at random. This β selection strategy is employed for all subsequent experiments.<br/>
 
 
-Figure 1. Examples of images after Fourier transform-based domain augmentation with different β values. When β value is greater than or equal to 0.03 the image artefacts became obvious.<br/>
 
-![输入图片描述](https://github.com/Research000/RSS-183/blob/main/beta.tiff)<br/>
+
+![输入图片描述](https://github.com/Research000/RSS-183/blob/main/cut_1.JPG)<br/>
+
+Figure 1. Examples of images after Fourier transform-based domain augmentation with different β values. When β value is greater than or equal to 0.03 the image artefacts became obvious.<br/>
 
 TABLE I. Evaluation results of local featurs learned with various β value on HPatches
 <table>
@@ -122,6 +124,6 @@ As observed, the proposed local feature only with Fourier transform-based domain
 In the visual localization task with the Aachen Day-Night datasets, we illustrate local feature matching for image pairs in Fig. 2. It can be seen that our proposed local feature gets more matching keypoints pairs than that of the baseline under environment changing conditions. It is extremely advantageous for the long-term localization of robots in the actual world.
 
 
-Figure 2. Examples for local feature matching for image pairs taken from Aachen Day-Night datasets. The left column displays the baseline's matching results, while the right column displays that of ours <br/>
+![输入图片描述](https://github.com/Research000/RSS-183/blob/main/cut_2.JPG)<br/>
 
-![输入图片描述](https://github.com/Research000/RSS-183/blob/main/beta2.tiff)
+Figure 2. Examples for local feature matching for image pairs taken from Aachen Day-Night datasets. The left column displays the baseline's matching results, while the right column displays that of ours <br/>
