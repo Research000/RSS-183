@@ -11,7 +11,12 @@ We have added the following experiments and results based on the reviewers' comm
 
 ***A. Experiment on selecting β values***
 >
-As demonstrated by Equation 9, β=0 will produce the same result as the original source image. In contrast, when β equals 1, the result's amplitude is replaced by that of the target image. Experiments were conducted in order to determine a suitable β value. First, we tested images with varying β values and observed that when β was greater than or equal to 0.03, image artefacts became obvious, as shown in Fig. 1. Subsequently, we sampled numerous β values (0.01, 0.015, 0.02, and 0.025) less than 0.03 to train the network (baseline with Fourier transform-based domain augmentation). We use the open-source code of ASLFeat (CVPR) as the baseline. The performance of models trained with β values 0.01, 0.015, and 0.02 are comparable, the performance of the model trained with β value 0.025 was lower. The test results on Image Matching task with HPatches are shown in Table Ⅰ. For each iteration in the training process, one of the three β values (0.01, 0.015, or 0.02) was chosen at random. This β selection strategy is employed for all subsequent experiments.
+As demonstrated by Equation 9, β=0 will produce the same result as the original source image. In contrast, when β equals 1, the result's amplitude is replaced by that of the target image. Experiments were conducted in order to determine a suitable β value. First, we tested images with varying β values and observed that when β was greater than or equal to 0.03, image artefacts became obvious, as shown in Fig. 1. Subsequently, we sampled numerous β values (0.01, 0.015, 0.02, and 0.025) less than 0.03 to train the network (baseline with Fourier transform-based domain augmentation). We use the open-source code of ASLFeat (CVPR) as the baseline. The performance of models trained with β values 0.01, 0.015, and 0.02 are comparable, the performance of the model trained with β value 0.025 was lower. The test results on Image Matching task with HPatches are shown in Table Ⅰ. For each iteration in the training process, one of the three β values (0.01, 0.015, or 0.02) was chosen at random. This β selection strategy is employed for all subsequent experiments.<br/>
+
+
+Figure 1. Examples of images after Fourier transform-based domain augmentation with different β values. When β value is greater than or equal to 0.03 the image artefacts became obvious.<br/>
+
+![输入图片描述](https://github.com/Research000/RSS-183/blob/main/beta.tiff)<br/>
 
 TABLE I. Evaluation results of local featurs learned with various β value on HPatches
 <table>
@@ -116,6 +121,7 @@ As observed, the proposed local feature only with Fourier transform-based domain
 
 In the visual localization task with the Aachen Day-Night datasets, we illustrate local feature matching for image pairs in Fig. 2. It can be seen that our proposed local feature gets more matching keypoints pairs than that of the baseline under environment changing conditions. It is extremely advantageous for the long-term localization of robots in the actual world.
 
-![输入图片描述](https://www.bing.com/images/search?view=detailV2&ccid=Fl4KDN0T&id=E80628AA9E1D6712841403FB8A3521D0D82438D6&thid=OIP.Fl4KDN0T6ruayOi0Jq4clQHaET&mediaurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.165e0a0cdd13eabb9ac8e8b426ae1c95%3frik%3d1jgk2NAhNYr7Aw%26riu%3dhttp%253a%252f%252fn.sinaimg.cn%252fsports%252ftransform%252f228%252fw650h378%252f20191007%252f0e2b-ifrwayw1669362.jpg%26ehk%3dPRF9Klhma%252fortb9K5wzUIJDABM1IxG40bBLafn3axVY%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&exph=378&expw=650&q=%e6%9b%bc%e8%81%94&simid=607994067654368619&FORM=IRPRST&ck=21762453ED880C9762C2B9FE42A899B6&selectedIndex=24&ajaxhist=0&ajaxserp=0)
 
+Figure 2. Examples for local feature matching for image pairs taken from Aachen Day-Night datasets. The left column displays the baseline's matching results, while the right column displays that of ours <br/>
 
+![输入图片描述](https://github.com/Research000/RSS-183/blob/main/beta2.tiff)
